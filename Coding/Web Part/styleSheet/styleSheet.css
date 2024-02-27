@@ -1,0 +1,24 @@
+body {
+    background-color: #FBF9F1;
+}
+
+* {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-variation-settings:"wdth" 100;
+    color: #92C7CF;
+}
+
+.collapse {
+    direction: rtl;
+}
+
+.container-fluid > a {
+    color: #92C7CF;
+}
+
+.container-fluid > .collapse > .navbar-nav > a {
+    color: #AAD7D9;
+}
