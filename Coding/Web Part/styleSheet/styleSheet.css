@@ -1,24 +1,64 @@
-body {
-    background-color: #FBF9F1;
-}
-
 * {
+    background-color: #f8f9fd;
     font-family: "Noto Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: bold;
     font-style: normal;
     font-variation-settings:"wdth" 100;
-    color: #92C7CF;
+    color: #163020;
 }
 
-.collapse {
-    direction: rtl;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
 }
 
-.container-fluid > a {
-    color: #92C7CF;
+.company-name {
+    flex: 1;
+    font-size: xx-large;
+    margin-left: 20px;
+    margin-top: 5px;
 }
 
-.container-fluid > .collapse > .navbar-nav > a {
-    color: #AAD7D9;
+.links a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #304D30;
+    font-size: large;
+    margin-right: 20px;
 }
+
+.content-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 90px;
+}
+
+.content-body .content {
+    padding: 40px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.content-body .content p {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.content-body .content span {
+    font-weight: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
