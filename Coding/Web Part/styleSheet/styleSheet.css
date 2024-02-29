@@ -3,7 +3,7 @@
     font-family: "Noto Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-variation-settings:"wdth" 100;
+    font-variation-settings: "wdth" 100;
     color: #212529;
 }
 
@@ -12,6 +12,8 @@
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+    background-color: #f8f9fa;
+    padding: 10px;
 }
 
 .company-name {
@@ -19,6 +21,7 @@
     font-size: xx-large;
     margin-left: 20px;
     margin-top: 5px;
+    font-size: 24px; /* Add this line to keep the font size for smaller screens */
 }
 
 .links a {
@@ -34,6 +37,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 100px 90px;
+    flex-direction: column; /* Add this line to maintain the column layout */
 }
 
 .content-body .content {
@@ -51,14 +55,32 @@
     font-weight: normal;
 }
 
+.image img {
+    height: auto;
+    /* max-width: 100%; */
+}
 
 
 
+/* Responsive styles */
+@media only screen and (min-width: 1050px) {
+    /* Adjust styles for medium-sized screens and above */
+    .content-body {
+        flex-direction: row;
+    }
 
 
+    .image {
+        margin-right: 20px;
+        
+    }
 
+    .content {
+        text-align: left;
+    }
 
-
-
-
+    .company-name {
+        font-size: 32px;
+    }
+}
 
