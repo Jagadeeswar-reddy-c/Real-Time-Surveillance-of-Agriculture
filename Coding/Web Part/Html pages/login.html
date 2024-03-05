@@ -23,15 +23,15 @@
                             <span class="fa fa-user-o"></span>
                         </div>
                         <h3 class="text-center mb-4">Sign In</h3>
-                        <form action="#" class="login-form">
+                        <form action="../php Files/login.php" method="post" class="login-form">
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="Email" required>
+                                <input type="text" name="email" class="form-control rounded-left" placeholder="Email" required>
                             </div>
                             <div class="form-group d-flex">
-                                <input type="password" class="form-control rounded-left" placeholder="Password" required>
+                                <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
+                                <button type="submit" value="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50">
