@@ -29,30 +29,28 @@
                             <span class="fa fa-user-plus"></span>
                         </div>
                         <h3 class="text-center mb-4">Create an Account</h3>
-                        <form action="../php Files/signUp.php" class="signup-form">
+                        <form id="signup-form" action="../php Files/signUp.php" method="post" class="signup-form">
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="Full Name" required>
+                                <input type="text" name="user_name" class="form-control rounded-left" placeholder="Full Name" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="Date of Birth" required>
+                                <input type="date" name="user_dob" class="form-control rounded-left" placeholder="Date of Birth" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="Phone Number" required>
+                                <input type="text" name="user_ph" class="form-control rounded-left" placeholder="Phone Number" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control rounded-left" placeholder="Email" required>
+                                <input type="email" name="email" class="form-control rounded-left" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control rounded-left" placeholder="Password" required>
+                                <input type="password" name="password" id="password" class="form-control rounded-left" placeholder="Password" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control rounded-left" placeholder="Confirm Password" required>
+                                <input type="password" name="cpassword" id="cpassword" class="form-control rounded-left" placeholder="Confirm Password" required>
                             </div>
-                            <!-- <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="Device ID" required>
-                            </div> -->
+                            <div id="error-message" class="error-message"></div>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Signup</button>
+                                <button type="submit" value="submit" class="form-control btn btn-primary rounded submit px-3">Signup</button>
                             </div>
                             <div class="form-group">
                                 <p>Already have an account? <a href="./login.html">Login here</a><span style="display: flex;"><a href="../index.html">Home</a></span></p>
@@ -63,5 +61,38 @@
             </div>
         </div>
     </section>
+    
+
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        var form = event.target;
+        var formData = new FormData(form);
+
+        // Use AJAX to submit the form data to signup.php
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Check the response for success or error
+                var response = JSON.parse(xhr.responseText);
+
+                // Display the error message or redirect on success
+                var errorMessageElement = document.getElementById('error-message');
+                if (response.success) {
+                    // errorMessageElement.innerHTML = '<p style="color: green;">' + response.message + '</p>';
+                    // Optionally, you can redirect the user to the login page or another page
+                    window.location.href = "./signUpAnimation.html";
+                } else {
+                    errorMessageElement.innerHTML = '<p style="color: red;">' + response.message + '</p>';
+                }
+            }
+        };
+
+        // Send the form data
+        xhr.send(formData);
+    });
+</script>
 </body>
 </html>

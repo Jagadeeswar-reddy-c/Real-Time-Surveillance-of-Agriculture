@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Login</title>
     <meta charset="utf-8">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../styleSheet/loginStyleSheet.css">
 </head>
+
 <body>
     <section class="ftco-section">
         <div class="container">
@@ -23,13 +25,15 @@
                             <span class="fa fa-user-o"></span>
                         </div>
                         <h3 class="text-center mb-4">Sign In</h3>
-                        <form action="../php Files/login.php" method="post" class="login-form">
+                        <form id="login-form" action="../php Files/login.php" method="post" class="login-form">
                             <div class="form-group">
                                 <input type="text" name="email" class="form-control rounded-left" placeholder="Email" required>
                             </div>
                             <div class="form-group d-flex">
                                 <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
                             </div>
+                            
+                                <div id="error-message" class="error-message"></div>
                             <div class="form-group">
                                 <button type="submit" value="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
                             </div>
@@ -53,5 +57,38 @@
             </div>
         </div>
     </section>
+
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            var form = event.target;
+            var formData = new FormData(form);
+
+            // Use AJAX to submit the form data to login.php
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', form.action, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Check the response for success or error
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.success) {
+                        // Redirect to the dashboard upon successful login
+                        window.location.href = "./signUpAnimation.html";
+                    } else {
+                        // Display the error message
+                        var errorMessageElement = document.getElementById('error-message');
+                        errorMessageElement.innerHTML = '<p style="color: red;">' + response.message + '</p>';
+                    }
+                }
+            };
+
+            // Send the form data
+            xhr.send(formData);
+        });
+    </script>
 </body>
+
 </html>

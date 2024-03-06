@@ -1,11 +1,49 @@
 <?php
+// Include the database connection file
+include 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    
+// Function to sanitize input data
+function sanitizeData($data, $conn) {
+    return mysqli_real_escape_string($conn, trim($data));
 }
 
+// Start a PHP session
+session_start();
+
+$response = array(); // Initialize an array for the response
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $email = sanitizeData($_POST["email"], $conn);
+    $password = sanitizeData($_POST["password"], $conn);
+
+    // Query to check login credentials
+    $query = "SELECT UD.USER_NAME
+            FROM USER_DETAILS UD
+            JOIN USER_PASSWORD UP ON UD.USER_EMAIL = UP.USER_EMAIL
+            WHERE UP.USER_EMAIL = '$email' AND UP.PASSWORD = '$password';";
+
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        // Login successful
+        $row = $result->fetch_assoc();
+
+        // Store user email in a session variable
+        $_SESSION['user_email'] = $row["USER_EMAIL"];
+
+        $response['success'] = true;
+    } else {
+        // Invalid credentials
+        $response['success'] = false;
+        $response['message'] = "Invalid email or password. Please try again.";
+    }
+}
+
+// Close the database connection
+$conn->close();
+
+// Send the JSON response
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>
