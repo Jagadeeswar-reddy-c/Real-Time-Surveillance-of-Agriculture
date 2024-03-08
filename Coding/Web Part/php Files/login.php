@@ -26,12 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
-        // Login successful
-        $row = $result->fetch_assoc();
-
-        // Store user email in a session variable
-        $_SESSION['user_email'] = $row["USER_EMAIL"];
-
         $response['success'] = true;
     } else {
         // Invalid credentials
