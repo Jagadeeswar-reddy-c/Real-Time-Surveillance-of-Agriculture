@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Analytic Dashboard</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../styleSheet/analysis.css" />
+</head>
+<body>
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <div class="content">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Head -->
+                <div class="head flex">
+                    <h1>Good Morning 👋</h1>
+
+                    <div class="box flex time-period">
+                        Monthly
+                        <ion-icon class="angle" name="caret-down-outline"></ion-icon>
+                    </div>
+
+                    <div class="box flex">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </div>
+                </div>
+                <!-- End Head -->
+
+                <!-- Stats -->
+                <div class="stats flex">
+                    <div class="stats box sales">
+                        <h2 class="heading">Sales</h2>
+                        <canvas id="sales"></canvas>
+                    </div>
+
+                    <div class="stats-box earning">
+                        <h2 class="heading">Earning</h2>
+                        <div class="earning-amount flex-c">
+                            <div class="earning-icon flex">
+                                <ion-icon name="logo-paypal"></ion-icon>
+                            </div>
+                            <p>$9125.33</p>
+                        </div>
+                        <canvas id="earning"></canvas>
+                    </div>
+                </div>
+
+                <!-- Product Stats -->
+                <div class="product-stats flex">
+                    <div class="product-sales stats-box">
+                        <h2 class="heading">Sales</h2>
+                        <canvas id="products"></canvas>
+                    </div>
+
+                    <div class="top-selling stats-box">
+                        <h2 class="heading">Top Selling Product</h2>
+                        <table class="top-selling-products" height="100%" width="100%">
+                            <!-- Table content here -->
+                        </table>
+                    </div>
+                </div>
+                <!-- End Product Stats -->
+
+                <!-- End Stats -->
+            </div>
+            <!-- End Main Content -->
+        </div>
+    </div>
+    <!-- End Dashboard -->
+
+    <!-- Ion Icons Js -->
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Chart creation JavaScript -->
+    <script src="../../javaScript/analysis.js"></script>
+</body>
+</html>

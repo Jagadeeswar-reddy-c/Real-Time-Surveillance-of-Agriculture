@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glassmorphism Sidebar HTML and CSS | CodingNepal</title>
+  <!-- Google fonts links -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="../../styleSheet/loginDashboard.css" />
+  <style>
+    
+  </style>
+</head>
+<body>
+  <div class="frame-container">
+    <iframe id="pageFrame"></iframe>
+  </div>
+  <div class="container">
+    <div class="sidebar">
+      <div class="user-account">
+        <img src="../../images/logo.png" alt="logo" />
+        <h2>CodingNepal</h2>
+      </div>
+      <ul class="links">
+        <h4>Main Menu</h4>
+        <li>
+          <span class="material-symbols-outlined">dashboard</span>
+          <a href="#" onclick="loadPage('./dashboard.html')">Dashboard</a>
+        </li>
+        <!-- <li>
+          <span class="material-symbols-outlined">show_chart</span>
+          <a href="#" onclick="loadPage('revenue.html')">Revenue</a>
+        </li> -->
+        <li>
+          <span class="material-symbols-outlined">flag</span>
+          <a href="#" onclick="loadPage('reports.html')">Reports</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">monitoring</span>
+          <a href="#" onclick="loadPage('./analysis.html')">Analytic</a>
+        </li>
+        <hr />
+        <h4>Advanced</h4>
+        <li>
+          <span class="material-symbols-outlined">person</span>
+          <a href="#" onclick="loadPage('designer.html')">Profile</a>
+        </li>
+        <!-- <li>
+          <span class="material-symbols-outlined">group</span>
+          <a href="#" onclick="loadPage('developer.html')">Developer </a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">ambient_screen</span>
+          <a href="#" onclick="loadPage('magic_build.html')">Magic Build</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">pacemaker</span>
+          <a href="#" onclick="loadPage('theme_maker.html')">Theme Maker</a>
+        </li> -->
+        
+        <hr />
+        <h4>Account</h4>
+        <li>
+          <span class="material-symbols-outlined">bar_chart</span>
+          <a href="#" onclick="loadPage('overview.html')">Overview</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">mail</span>
+          <a href="#" onclick="loadPage('message.html')">Message</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">settings</span>
+          <a href="#" onclick="loadPage('settings.html')">Settings</a>
+        </li>
+        <li class="logout">
+          <span class="material-symbols-outlined">logout</span>
+          <a href="../login.html">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+
+  <script>
+    function loadPage(pageUrl) {
+      document.getElementById('pageFrame').src = pageUrl;
+    }
+  </script>
+</body>
+</html>

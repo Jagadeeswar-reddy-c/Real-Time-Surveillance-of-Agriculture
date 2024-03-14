@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+h4 {
+    color: #333;
+    font-weight: 600;
+    display: none;
+    margin-bottom: 10px;
+}
+
+hr {
+   border: 1px solid #4c4c4c;
+    margin: 10px 8px;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    background-image: url("images/hero.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebar .user-account {
+    display: flex;
+    align-items: center;
+    padding: 40px 10px 20px 10px;
+    color: #000;
+}
+
+.user-account img {
+    height: 45px;
+    border-radius: 50%;
+}
+
+.user-account h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: none;
+    margin-left: 15px;
+}
+
+.links {
+    list-style: none;
+    margin-top: 20px;
+    overflow-y: scroll;
+    height: calc(100% - 140px);
+}
+
+.links li {
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.links span {
+    padding: 12px 10px;
+
+}
+.links li a {
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 10px 20px;
+    white-space: nowrap;
+    display: none;
+}
+
+.links li:hover {
+    background: #fff;
+}
+
+.logout {
+    margin-top: 20px;
+}
+
+.links::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar:hover {
+    width: 260px;
+}
+
+.sidebar:hover .user-account h2 {
+    display: block;
+}
+
+.sidebar:hover .links li a {
+    display: block;
+    justify-content: flex-start;
+}
+
+.sidebar:hover h4 {
+    display: block;
+}
+
+.sidebar:hover hr {
+    border-color: transparent;
+}
+
+html,
+    body,
+    .container,
+    .frame-container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .frame-container {
+      position: relative;
+      @media screen and (max-width: 991px) {
+        max-width: 959px !important;
+        margin: 0 16px !important;
+        padding: 0 !important;
+        width: auto !important;
+        }
+    }
+    #pageFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding-left: 110px;
+      box-sizing: border-box;
+    }
+
