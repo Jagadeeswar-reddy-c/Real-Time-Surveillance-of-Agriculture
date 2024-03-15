@@ -100,11 +100,11 @@ html {
 
 .box {
   padding: 10px;
-  background: #f5f2f4;
+  background: #f8f9fd;
   font-size: 1.8rem;
   font-weight: 500;
   cursor: pointer;
-  color: #e6e3e5;
+  color: black;
 }
 
 .box .angle {
@@ -117,7 +117,7 @@ html {
 
 /* Stats */
 .stats {
-  background: #33202c;
+  background: #f8f9fd;
   margin-top: 4rem;
   padding: 2rem 1rem;
   font-size: 1.6rem;
@@ -138,19 +138,19 @@ html {
 }
 
 .earning {
-  background: #3f2532;
+  background: #f8f9fd;
   width: 38%;
 }
 
 .earning-amount {
   font-size: 2rem;
-  color: #fff;
+  color: black;
   margin-bottom: 10px;
 }
 
 .earning-icon {
   font-size: 4rem;
-  color: #3f2532;
+  color: white;
   background: linear-gradient(to right bottom, #faad72, #f89456);
   padding: 15px;
   border-radius: 50%;
@@ -164,7 +164,7 @@ html {
 }
 
 .product-stats .stats-box {
-  background: #33202c;
+  background: #f8f9fd;
 }
 
 .product-sales {
@@ -182,7 +182,7 @@ html {
 }
 
 .top-selling-products th {
-  background: #3f2532;
+  background: #f8f9fd;
 }
 
 .top-selling-products th,
@@ -200,9 +200,9 @@ html {
 
 .product-name .icon {
   margin: 0;
-  background: #ff8bb4;
+  background: #007bff;
   border-radius: 50%;
-  color: #291623;
+  color: #f8f9fd;
   font-size: 3rem;
 }
 
@@ -211,7 +211,7 @@ html {
 }
 
 .product-name.windows .icon {
-  background: #dc9afc;
+  background: #2b6db3;
 }
 
 /* End Product Sales */
@@ -286,7 +286,7 @@ html {
   font-size: 3rem;
   width: 40px;
   height: 40px;
-  background: #33202c;
+  background: #007bff;
   margin: 0 5px 5px 5px;
   border-radius: 50%;
   color: #faad72;
@@ -295,7 +295,7 @@ html {
 .upgrade {
   width: 100%;
   margin: 5rem auto 0 auto;
-  background: #33202c;
+  background: #007bff;
   padding: 2rem;
   color: #ccc;
   text-align: center;
@@ -311,7 +311,7 @@ html {
   margin: 0 auto;
   background: linear-gradient(to right bottom, #faad72, #f89456);
   padding: 2rem 0;
-  color: #2f1a27;
+  color: #007bff;
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
@@ -390,7 +390,7 @@ html {
   .earning {
     width: 100%;
     margin: 20px 0;
-    background: #3f2532;
+    background: whitesmoke;
   }
 
   .profile {
@@ -458,22 +458,17 @@ html {
 
 
 
-
-/* YT LINK */
-
-
-.youtube {
-  position: fixed;
-  bottom: 40px;
-  right: 70px;
+#time-period-select {
+  color: black;
+  border-radius: 8%;
+  padding: 12px 16px;
   text-decoration: none;
-  padding: 8px 12px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 6px;
-  box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.2);
-  color: #fff;
+  display: block;
 }
 
-.youtube p {
-  font-size: 22px;
+#time-period-select > option {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
