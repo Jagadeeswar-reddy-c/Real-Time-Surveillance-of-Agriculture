@@ -25,12 +25,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = $conn->query($query);
 
-    if ($result->num_rows > 0) {
-        $response['success'] = true;
+    if ($result) {
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // Store email in session variable for further use
+            $_SESSION['user_email'] = $email;
+
+            $response['success'] = true;
+        } else {
+            // Invalid credentials
+            $response['success'] = false;
+            $response['message'] = "Invalid email or password. Please try again.";
+        }
     } else {
-        // Invalid credentials
+        // Error in query execution
         $response['success'] = false;
-        $response['message'] = "Invalid email or password. Please try again.";
+        $response['message'] = "Error executing query: " . $conn->error;
     }
 }
 

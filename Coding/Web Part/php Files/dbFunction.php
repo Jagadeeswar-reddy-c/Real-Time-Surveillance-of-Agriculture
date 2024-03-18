@@ -37,13 +37,23 @@ if ($conn->query($sql) === TRUE) {
     echo "Error creating Device Table: " . $conn->error;
 }
 
+// SQL to insert a device
+$sql_insert_device = "INSERT INTO DEVICE_TYPE (DEVICE_ID, DEVICE_MODEL_NAME) VALUES (1, 'AAT001')";
+
+// Execute the insert device SQL
+if ($conn->query($sql_insert_device) === TRUE) {
+    echo "Device inserted successfully <br>";
+} else {
+    echo "Error inserting device: " . $conn->error;
+}
+
 // Creating User Table
 $sql = "CREATE TABLE IF NOT EXISTS USER_DETAILS (
     USER_NAME VARCHAR(60),
     USER_BOD DATE,
     USER_PHONE INT,
     USER_EMAIL VARCHAR(30),
-    DEVICE_ID INT,
+    DEVICE_LOG_ID INT,
     UNIQUE(USER_EMAIL),
     PRIMARY KEY (USER_EMAIL),
     FOREIGN KEY (DEVICE_ID) REFERENCES DEVICE_TYPE(DEVICE_ID)
@@ -53,6 +63,20 @@ if ($conn->query($sql) === TRUE) {
     echo "User Table created successfully <br>";
 } else {
     echo "Error creating User Table: " . $conn->error;
+}
+
+$sql = "CREATE TABLE IF NOT EXISTS DEVICE_TYPE_LOG (
+    DEVICE_LOG_ID INT PRIMARY KEY,
+    USER_EMAIL VARCHAR(30),
+    DEVICE_ID INT,
+    FOREIGN KEY (USER_EMAIL) REFERENCES DEVICE_TYPE(USER_EMAIL),
+    FOREIGN KEY (DEVICE_ID) REFERENCES DEVICE_TYPE(DEVICE_ID)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Device Log Table created successfully <br>";
+} else {
+    echo "Error creating Device Table: " . $conn->error;
 }
 
 // Creating Device Table

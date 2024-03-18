@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../styleSheet/loginStyleSheet.css">
+    <style>
+        .col-lg-5 {
+            background-color: white;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Profile Update</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="signup-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-user-plus"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Update Account</h3>
+                        <form id="profile-update-form" action="../../php Files/loginProfileUpdate.php" method="post" class="signup-form">
+                            <div class="form-group">
+                                <input type="text" name="user_name" class="form-control rounded-left" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" name="user_dob" class="form-control rounded-left" placeholder="Date of Birth" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="user_ph" class="form-control rounded-left" placeholder="Phone Number" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="device_id" class="form-control rounded-left" placeholder="Device ID" required>
+                            </div>
+                            <div id="profile-error-message" class="error-message"></div>
+                            <div class="form-group">
+                                <button type="submit" value="submit" class="form-control btn btn-primary rounded submit px-3">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Password Update</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="signup-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-user-plus"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Password Update</h3>
+                        <form id="password-update-form" action="../../php Files/loginProfilePassword.php" method="post" class="signup-form">
+                            <div class="form-group">
+                                <input type="password" name="curpassword" class="form-control rounded-left" placeholder="Current Password" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="npassword" id="password" class="form-control rounded-left" placeholder="New Password" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="cpassword" id="cpassword" class="form-control rounded-left" placeholder="Confirm Password" required>
+                            </div>
+                            <div id="password-error-message" class="error-message"></div>
+                            <div class="form-group">
+                                <button type="submit" value="submit" class="form-control btn btn-primary rounded submit px-3">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+<script>
+    document.getElementById('profile-update-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                var response = JSON.parse(xhr.responseText);
+                var errorMessageElement = document.getElementById('profile-error-message');
+                if (response.success) {
+                    errorMessageElement.innerHTML = '<p style="color: green;">' + "Sucessfully Changed" + '</p>';
+                    // window.location.href = "./profileUpdated.html";
+                } else {
+                    errorMessageElement.innerHTML = '<p style="color: red;">' + response.message + '</p>';
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+
+    document.getElementById('password-update-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                var errorMessageElement = document.getElementById('password-error-message');
+                if (response.success) {
+                    // window.location.href = "./passwordUpdated.html";
+                    errorMessageElement.innerHTML = '<p style="color: green;">' + "Sucessfully Changed" + '</p>';
+                } else {
+                    errorMessageElement.innerHTML = '<p style="color: red;">' + response.message + '</p>';
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+</body>
+</html>
