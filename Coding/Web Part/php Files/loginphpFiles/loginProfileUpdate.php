@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-include 'db.php';
+include '../db.php';
 
 // Function to sanitize input data
 function sanitizeData($data, $conn) {

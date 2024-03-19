@@ -6,9 +6,23 @@ function calculateAverage(arr) {
     return sum / arr.length;
 }
 
+async function getAuthenticatedUserDeviceID() {
+    const userEmail = "<?php echo $_SESSION['user_email']; ?>";
+
+    // Perform a database query to retrieve the device log ID associated with the user's email
+    const response = await fetch(`/api/getDeviceLogID?userEmail=${userEmail}`);
+    const data = await response.json();
+
+    if (!data || !data.deviceLogID) {
+        throw new Error('Device Log ID not found for the authenticated user');
+    }
+
+    return data.deviceLogID;
+}
+
 // Function to fetch data from the API
-async function fetchData(deviceId, apiKey, fields, labels, fromDate, toDate) {
-    const url = `https://api.thingspeak.com/channels/${deviceId}/feeds.json?api_key=${apiKey}&start=${fromDate.toISOString()}&end=${toDate.toISOString()}`;
+async function fetchData(deviceId, apiKey, fields, labels, fromDate, toDate, devicelogid) {
+    const url = `https://api.thingspeak.com/channels/${deviceId}/feeds.json?api_key=${apiKey}&start=${fromDate.toISOString()}&end=${toDate.toISOString()}&devicelogid=${devicelogid}`;
 
     try {
         const response = await fetch(url);
@@ -68,6 +82,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const fields = ["field2", "field3", "field4", "field5"];
     const labels = ["Humidity", "Soil Moisture", "Water Level", "Minerals"];
 
+    let devicelogid;
+    devicelogid = getAuthenticatedUserDeviceID();
+
     const currentDate = new Date();
     const fromDate = new Date(currentDate);
     fromDate.setDate(fromDate.getDate() - 30); // Subtract 30 days from the current date
@@ -76,7 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const toDate = currentDate;
 
     // Fetch data for the doughnut chart
-    fetchData(DEVICE_ID, API_KEY, fields, labels, fromDate, toDate)
+    fetchData(DEVICE_ID, API_KEY, fields, labels, fromDate, toDate, devicelogid)
         .then(datasets => {
             if (datasets) {
                 const averages = datasets.map(dataset => calculateAverage(dataset.data));

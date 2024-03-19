@@ -2,14 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let previousChartNameValue;
     let previousChartWeekly;
 
-    // Calculate the average of an array of numbers
-    function calculateAverage(arr) {
-        const sum = arr.reduce((acc, curr) => acc + curr, 0);
-        return sum / arr.length;
+    async function getAuthenticatedUserDeviceID() {
+        const userEmail = "<?php echo $_SESSION['user_email']; ?>";
+    
+        // Perform a database query to retrieve the device log ID associated with the user's email
+        const response = await fetch(`/api/getDeviceLogID?userEmail=${userEmail}`);
+        const data = await response.json();
+    
+        if (!data || !data.deviceLogID) {
+            throw new Error('Device Log ID not found for the authenticated user');
+        }
+    
+        return data.deviceLogID;
     }
+    
 
-    async function fetchData(deviceId, apiKey, fields, labels, fromDate, toDate) {
-        const url = `https://api.thingspeak.com/channels/${deviceId}/feeds.json?api_key=${apiKey}&start=${fromDate}&end=${toDate}`;
+    async function fetchData(deviceId, apiKey, fields, labels, fromDate, toDate, devicelogid) {
+        const url = `https://api.thingspeak.com/channels/${deviceId}/feeds.json?api_key=${apiKey}&start=${fromDate}&end=${toDate}&devicelogid=${devicelogid}`;
 
         try {
             const response = await fetch(url);
@@ -84,7 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const API_KEY = 'HIH7KHEBSGBD4WVI';
 
         // Define the fields and labels based on the selected option
-        let fields, labels, labelsWeekly;
+        let fields, labels, labelsWeekly, devicelogid;
+        devicelogid = getAuthenticatedUserDeviceID();
         if (selectedValue === "humidity") {
             fields = ["field2"];
             labels = ["Humidity"];

@@ -19,6 +19,34 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Device Update</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="signup-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-user-plus"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Update Device</h3>
+                        <form id="device-update-form" action="../../php Files/loginphpFiles/loginDeviceUpdate.php" method="post" class="signup-form">
+                            <div class="form-group">
+                                <input type="text" name="device_log_id" class="form-control rounded-left" placeholder="Device Serial ID" required>
+                            </div>
+                            <div id="device-error-message" class="error-message"></div>
+                            <div class="form-group">
+                                <button type="submit" value="submit" class="form-control btn btn-primary rounded submit px-3">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
                     <h2 class="heading-section">Profile Update</h2>
                 </div>
             </div>
@@ -29,7 +57,7 @@
                             <span class="fa fa-user-plus"></span>
                         </div>
                         <h3 class="text-center mb-4">Update Account</h3>
-                        <form id="profile-update-form" action="../../php Files/loginProfileUpdate.php" method="post" class="signup-form">
+                        <form id="profile-update-form" action="../../php Files/loginphpFiles/loginProfileUpdate.php" method="post" class="signup-form">
                             <div class="form-group">
                                 <input type="text" name="user_name" class="form-control rounded-left" placeholder="Full Name" required>
                             </div>
@@ -38,9 +66,6 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" name="user_ph" class="form-control rounded-left" placeholder="Phone Number" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="number" name="device_id" class="form-control rounded-left" placeholder="Device ID" required>
                             </div>
                             <div id="profile-error-message" class="error-message"></div>
                             <div class="form-group">
@@ -66,7 +91,7 @@
                             <span class="fa fa-user-plus"></span>
                         </div>
                         <h3 class="text-center mb-4">Password Update</h3>
-                        <form id="password-update-form" action="../../php Files/loginProfilePassword.php" method="post" class="signup-form">
+                        <form id="password-update-form" action="../../php Files/loginphpFiles/loginProfilePassword.php" method="post" class="signup-form">
                             <div class="form-group">
                                 <input type="password" name="curpassword" class="form-control rounded-left" placeholder="Current Password" required>
                             </div>
@@ -124,6 +149,27 @@
                 if (response.success) {
                     // window.location.href = "./passwordUpdated.html";
                     errorMessageElement.innerHTML = '<p style="color: green;">' + "Sucessfully Changed" + '</p>';
+                } else {
+                    errorMessageElement.innerHTML = '<p style="color: red;">' + response.message + '</p>';
+                }
+            }
+        };
+        xhr.send(formData);
+    });
+
+    document.getElementById('device-update-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                var response = JSON.parse(xhr.responseText);
+                var errorMessageElement = document.getElementById('device-error-message');
+                if (response.success) {
+                    errorMessageElement.innerHTML = '<p style="color: green;">' + "Successfully Updated" + '</p>';
                 } else {
                     errorMessageElement.innerHTML = '<p style="color: red;">' + response.message + '</p>';
                 }
