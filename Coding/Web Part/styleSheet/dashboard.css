@@ -7,14 +7,12 @@ body {
     padding: 0 !important;
     margin-right: auto;
     margin-left: auto;
-
     @media screen and (min-width: 992px) and (max-width: 1439px) {
         max-width: 1279px !important;
         padding: 0 !important;
         margin: 0 80px !important;
         width: auto !important;
     }
-
     @media screen and (max-width: 991px) {
         max-width: 959px !important;
         margin: 0 16px !important;
@@ -28,7 +26,6 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     padding: 30px;
-    
     @media screen and (max-width: 991px) {
         grid-template-columns: 1fr;
     }
@@ -39,7 +36,8 @@ body {
     padding: 0 !important;
     margin-bottom: 40px;
     font-size: 40px;
-    color: #000; /* Changed color to white */
+    color: #000;
+    /* Changed color to white */
     font-weight: 600;
     line-height: 60px;
 }
@@ -58,7 +56,6 @@ body {
     background-clip: padding-box;
     border-radius: 45px;
     padding: 40px;
-    
     img {
         margin-bottom: 32px;
     }
@@ -82,7 +79,8 @@ body {
 
 .card-title {
     font-weight: 600;
-    color: white; /* Changed color to white */
+    color: white;
+    /* Changed color to white */
     letter-spacing: -0.02em;
     line-height: 40px;
     font-style: normal;
@@ -93,9 +91,8 @@ body {
 .card-description {
     font-weight: 600;
     line-height: 32px;
-    color: hsla(0, 0%, 100%, 0.5); /* Changed color to white */
+    color: hsla(0, 0%, 100%, 0.5);
+    /* Changed color to white */
     font-size: 16px;
     max-width: 470px;
 }
-
-
